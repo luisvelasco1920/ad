@@ -10,3 +10,17 @@
  Clonar en mi home:
   git clone https://github.com/luisvelasco1920/ad.git
 
+ Configuración local de git:
+  git config --global user.name luisvelasco1920
+  git config --global user.email luis.velasco@iesserpis.org
+  git config --global push.default simple
+
+ Nuevo archivo:
+  git add diario.txt (o git add .)
+  git commit -m "diario.txt con detalles sobre github y git"
+  git push (para publicar nueva versión)
+
+ Otros comandos:
+  git log (muestra la lista de versiones)
+  git status 
+
