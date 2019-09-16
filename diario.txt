@@ -1,0 +1,12 @@
+20190916 lv
+ Crear usuario en github:
+  Usuario: luisvelasco1920
+  Correo:  luis.velasco@iesserpis.org (o una cuenta personal)
+  Contraseña: xxxxxxxx
+ Crear repositorio:
+  Nombre: ad
+  Inicializar con README
+  .gitignore: VisualStudio (por c#)
+ Clonar en mi home:
+  git clone https://github.com/luisvelasco1920/ad.git
+
