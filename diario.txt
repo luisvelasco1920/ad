@@ -24,3 +24,24 @@
   git log (muestra la lista de versiones)
   git status 
 
+20190920 lv
+ En VirtualBox crear máquina virtual instalando ubuntu 16.04:
+  RAM 2048MB, Disco: 20GB, Procesadores: 2
+  usuario: administrador/sistemas
+  nombre pc: serpisdam
+
+20190923 lv
+ En serpisdam actualizar software:
+  apt update (actualiza la lista de paquetes)
+  apt full-upgrade (actualiza los paquetes actualizables)
+
+ En máquina real: descargar de bitnami.com LAMP
+  Instalar:
+    poner bit de ejecución, dar doble click y ESPERAR
+    en componentes dejamos sólo phpmyadmin
+    root/sistemas
+
+ Crear base de datos: dbprueba
+ Crear tabla categoria y añadir datos de prueba: ver dbprueba.sql
+ 
+

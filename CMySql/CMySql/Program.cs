@@ -6,23 +6,54 @@ namespace CMySql
 {
     class MainClass
     {
+        private static IDbConnection dbConnection;
         public static void Main(string[] args)
         {
             Console.WriteLine("Acceso a dbprueba");
-
-            IDbConnection dbConnection = new MySqlConnection(
+            dbConnection = new MySqlConnection(
                  "server=localhost;database=dbprueba;user=root;password=sistemas;ssl-mode=none"
             );
-
             dbConnection.Open();
 
-            IDbCommand dbCommand = dbConnection.CreateCommand();
-            dbCommand.CommandText = "select * from categoria";
-            IDataReader dataReader = dbCommand.ExecuteReader()
-
-
+            //InsertValue();
+            //ShowAll();
+            ShowMetaInfo();
 
             dbConnection.Close();
+        }
+
+        public static void ShowAll() {
+            IDbCommand dbCommand = dbConnection.CreateCommand();
+            dbCommand.CommandText = "select * from categoria";
+            IDataReader dataReader = dbCommand.ExecuteReader();
+
+            while (dataReader.Read()) {
+                Console.WriteLine("id={0} nombre={1}", dataReader["id"], dataReader["nombre"]);
+            }
+
+            dataReader.Close();
+        }
+
+        public static void InsertValue() {
+            IDbCommand dbCommand = dbConnection.CreateCommand();
+            //string nombre = "nuevo " + DateTime.Now;
+            Console.Write("Nombre: ");
+            string nombre = Console.ReadLine();
+            dbCommand.CommandText = String.Format("insert into categoria (nombre) values ('{0}')", nombre);
+            dbCommand.ExecuteNonQuery();
+        }
+
+        public static void ShowMetaInfo() {
+            IDbCommand dbCommand = dbConnection.CreateCommand();
+            dbCommand.CommandText = "select * from categoria";
+            IDataReader dataReader = dbCommand.ExecuteReader();
+
+            Console.WriteLine("FieldCount={0}", dataReader.FieldCount);
+            for (int index = 0; index < dataReader.FieldCount; index++)
+                Console.WriteLine("Field {0,3} = {1,-15} Type= {2}", index, dataReader.GetName(index), 
+                  dataReader.GetFieldType(index));
+
+            dataReader.Close();
         }
     }
 }
