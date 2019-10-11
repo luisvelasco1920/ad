@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CConsola
+namespace Serpis.Ad
 {
     public class Menu
     {
@@ -21,14 +21,14 @@ namespace CConsola
 
         public Menu Add(string label, Action action) {
             labels.Add(label);
-            string option = label.Substring(0, 1).ToUpper();
+            string option = label.Trim().Substring(0, 1).ToUpper();
             actions.Add(option, action);
             return this;
         }
 
         public Menu ExitWhen(string label) {
             labels.Add(label);
-            string option = label.Substring(0, 1).ToUpper();
+            string option = label.Trim().Substring(0, 1).ToUpper();
             actions.Add(option, () => exit = true);
             return this;
         }
@@ -38,6 +38,7 @@ namespace CConsola
                 Console.WriteLine(menuLabel);
                 foreach (string label in labels)
                     Console.WriteLine(label);
+                Console.Write("Elige opción: ");
                 string option = Console.ReadLine();
                 if (actions.ContainsKey(option))
                     actions[option]();
