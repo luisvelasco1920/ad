@@ -1,76 +1,38 @@
-﻿using System;
-using Gtk;
+﻿using Gtk;
+using System;
+using System.Collections.Generic;
 
 using CGtk;
+
+using Serpis.Ad;
 
 public partial class MainWindow : Gtk.Window
 {
     public MainWindow() : base(Gtk.WindowType.Toplevel) {
         Build();
 
-        Categoria categoria1 = new Categoria(1, "cat 1");
-        Categoria categoria2 = new Categoria(2, "cat 2");
 
+        IList<Categoria> categorias = new List<Categoria>();
+        categorias.Add(new Categoria(1, "cat 1"));
+        categorias.Add(new Categoria(2, "cat 2"));
+        categorias.Add(new Categoria(3, "cat 3"));
 
-        //treeView.AppendColumn("id", new CellRendererText(), "text", 0);
-        //treeView.AppendColumn("nombre", new CellRendererText(), "text", 1);
-
-        ListStore listStore = new ListStore(typeof(Categoria));
-
-        Fill(treeView, "Id", "Nombre");
-
-        //CellRendererText cellRendererText = new CellRendererText();
-        //treeView.AppendColumn("Id", cellRendererText,
-        //  new TreeCellDataFunc ((tree_column, cell, tree_model, iter) => {
-        //      //Categoria categoria = (Categoria)listStore.GetValue(iter, 0);
-        //      //object value = categoria.Id;
-        //      object obj = tree_model.GetValue(iter, 0);
-        //      object value = obj.GetType().GetProperty("Id").GetValue(obj);
-
-        //      ((CellRendererText)cell).Text = value.ToString();
-        //  })
-        //);
-
-        //treeView.AppendColumn("Nombre", cellRendererText,
-        //  new TreeCellDataFunc((tree_column, cell, tree_model, iter) => {
-        //      //Categoria categoria = (Categoria)listStore.GetValue(iter, 0);
-        //      //object value = categoria.Nombre;
-        //      object obj = tree_model.GetValue(iter, 0);
-        //      object value = obj.GetType().GetProperty("Nombre").GetValue(obj);
-        //      cellRendererText.Text = value.ToString();
-
-        //  })
-        //);
-
-
-        treeView.Model = listStore;
-
-        listStore.AppendValues(categoria1);
-        listStore.AppendValues(categoria2);
-
+        TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, categorias);
 
         newAction.Activated += (sender, e) => new CategoriaWindow();
+        editAction.Activated += (sender, e) => {
+            object value = TreeViewHelper.GetValue(treeView, "Nombre");
+            Console.WriteLine("editAction Activated Nombre = " + value);
+        };
+
+        refreshAction.Activated += (sender, e) =>
+            TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, categorias);
+
         refreshStateActions();
         treeView.Selection.Changed += (sender, e) => refreshStateActions();
     }
 
 
-    public void Fill(TreeView treeView, params string[] propertyNames) {
-        CellRendererText cellRendererText = new CellRendererText();
-        foreach (string propertyName in propertyNames)
-            treeView.AppendColumn(propertyName, cellRendererText,
-              new TreeCellDataFunc((tree_column, cell, tree_model, iter) => {
-                  //Categoria categoria = (Categoria)listStore.GetValue(iter, 0);
-                  //object value = categoria.Id;
-                  object obj = tree_model.GetValue(iter, 0);
-                  object value = obj.GetType().GetProperty(propertyName).GetValue(obj);
-
-                  cellRendererText.Text = value.ToString();
-              })
-            );
-
-
-    }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a) {
         Application.Quit();
