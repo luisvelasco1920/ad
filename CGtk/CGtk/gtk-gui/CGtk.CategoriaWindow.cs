@@ -8,15 +8,15 @@ namespace CGtk
 
 		private global::Gtk.Table table1;
 
-		private global::Gtk.Entry entry1;
+		private global::Gtk.Entry entryNombre;
 
 		private global::Gtk.Label label1;
 
 		private global::Gtk.HButtonBox hbuttonbox3;
 
-		private global::Gtk.Button button6;
+		private global::Gtk.Button buttonCancel;
 
-		private global::Gtk.Button button7;
+		private global::Gtk.Button buttonOk;
 
 		protected virtual void Build()
 		{
@@ -35,13 +35,13 @@ namespace CGtk
 			this.table1.RowSpacing = ((uint)(6));
 			this.table1.ColumnSpacing = ((uint)(6));
 			// Container child table1.Gtk.Table+TableChild
-			this.entry1 = new global::Gtk.Entry();
-			this.entry1.CanFocus = true;
-			this.entry1.Name = "entry1";
-			this.entry1.IsEditable = true;
-			this.entry1.InvisibleChar = '•';
-			this.table1.Add(this.entry1);
-			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1[this.entry1]));
+			this.entryNombre = new global::Gtk.Entry();
+			this.entryNombre.CanFocus = true;
+			this.entryNombre.Name = "entryNombre";
+			this.entryNombre.IsEditable = true;
+			this.entryNombre.InvisibleChar = '•';
+			this.table1.Add(this.entryNombre);
+			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1[this.entryNombre]));
 			w1.LeftAttach = ((uint)(1));
 			w1.RightAttach = ((uint)(2));
 			w1.YOptions = ((global::Gtk.AttachOptions)(4));
@@ -63,25 +63,25 @@ namespace CGtk
 			this.hbuttonbox3.Name = "hbuttonbox3";
 			this.hbuttonbox3.LayoutStyle = ((global::Gtk.ButtonBoxStyle)(4));
 			// Container child hbuttonbox3.Gtk.ButtonBox+ButtonBoxChild
-			this.button6 = new global::Gtk.Button();
-			this.button6.CanFocus = true;
-			this.button6.Name = "button6";
-			this.button6.UseStock = true;
-			this.button6.UseUnderline = true;
-			this.button6.Label = "gtk-cancel";
-			this.hbuttonbox3.Add(this.button6);
-			global::Gtk.ButtonBox.ButtonBoxChild w4 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox3[this.button6]));
+			this.buttonCancel = new global::Gtk.Button();
+			this.buttonCancel.CanFocus = true;
+			this.buttonCancel.Name = "buttonCancel";
+			this.buttonCancel.UseStock = true;
+			this.buttonCancel.UseUnderline = true;
+			this.buttonCancel.Label = "gtk-cancel";
+			this.hbuttonbox3.Add(this.buttonCancel);
+			global::Gtk.ButtonBox.ButtonBoxChild w4 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox3[this.buttonCancel]));
 			w4.Expand = false;
 			w4.Fill = false;
 			// Container child hbuttonbox3.Gtk.ButtonBox+ButtonBoxChild
-			this.button7 = new global::Gtk.Button();
-			this.button7.CanFocus = true;
-			this.button7.Name = "button7";
-			this.button7.UseStock = true;
-			this.button7.UseUnderline = true;
-			this.button7.Label = "gtk-ok";
-			this.hbuttonbox3.Add(this.button7);
-			global::Gtk.ButtonBox.ButtonBoxChild w5 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox3[this.button7]));
+			this.buttonOk = new global::Gtk.Button();
+			this.buttonOk.CanFocus = true;
+			this.buttonOk.Name = "buttonOk";
+			this.buttonOk.UseStock = true;
+			this.buttonOk.UseUnderline = true;
+			this.buttonOk.Label = "gtk-ok";
+			this.hbuttonbox3.Add(this.buttonOk);
+			global::Gtk.ButtonBox.ButtonBoxChild w5 = ((global::Gtk.ButtonBox.ButtonBoxChild)(this.hbuttonbox3[this.buttonOk]));
 			w5.Position = 1;
 			w5.Expand = false;
 			w5.Fill = false;

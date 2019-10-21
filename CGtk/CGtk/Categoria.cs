@@ -3,6 +3,9 @@ namespace CGtk
 {
     public class Categoria
     {
+        public Categoria() {
+        }
+
         public Categoria(ulong id, string nombre) {
             this.id = id;
             this.nombre = nombre;
