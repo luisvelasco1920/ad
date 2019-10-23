@@ -36,11 +36,11 @@ namespace CGtk
             return categorias;
         }
 
-        private static string select= "select * from categoria where id = @id";
+        private static string selectSql= "select * from categoria where id = @id";
         public static Categoria Load(object id) {
             Categoria categoria = new Categoria();
             IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
-            dbCommand.CommandText = select;
+            dbCommand.CommandText = selectSql;
             DbCommandHelper.AddParameter(dbCommand, "id", id);
             IDataReader dataReader = dbCommand.ExecuteReader();
             dataReader.Read();
@@ -50,5 +50,30 @@ namespace CGtk
             return categoria;
         }
 
+        public static void Save(Categoria categoria) {
+            if (categoria.Id == 0)
+                insert(categoria);
+            else
+                update(categoria);
+        }
+
+        private static string insertSql = "insert into categoria (nombre) values (@nombre)";
+        private static void insert(Categoria categoria) {
+
+        }
+
+        private static string updateSql = "update categoria set nombre=@nombre where id=@id";
+        private static void update(Categoria categoria) {
+            IDbCommand dbCommand = App.Instance.DbConnection.CreateCommand();
+            dbCommand.CommandText = updateSql;
+            DbCommandHelper.AddParameter(dbCommand, "nombre", categoria.Nombre);
+            DbCommandHelper.AddParameter(dbCommand, "id", categoria.Id);
+            dbCommand.ExecuteNonQuery();
+        }
+
+        private static string deleteSql = "delete from categoria where id=@id";
+        public static void Delete(object id) {
+
+        }
     }
 }

@@ -23,13 +23,15 @@ public partial class MainWindow : Gtk.Window
 
         TreeViewHelper.Fill(treeView, new string[] { "Id", "Nombre" }, CategoriaDao.GetAll());
 
-        newAction.Activated += (sender, e) => { 
-            new CategoriaWindow(null);
+        newAction.Activated += (sender, e) => {
+            Categoria categoria = new Categoria();
+            new CategoriaWindow(categoria);
         };
 
         editAction.Activated += (sender, e) => {
             object id = TreeViewHelper.GetId(treeView);
-            new CategoriaWindow(id);
+            Categoria categoria = CategoriaDao.Load(id);
+            new CategoriaWindow(categoria);
         };
 
         refreshAction.Activated += (sender, e) =>
