@@ -12,6 +12,6 @@ create table articulo (
   nombre varchar(50) not null unique,
   precio decimal(10,2),
   categoria bigint unsigned,
-  foreign key categoria references categoria(id)
+  foreign key (categoria) references categoria (id)
 );
 
